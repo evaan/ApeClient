@@ -1,0 +1,10 @@
+[
+{
+  "modid": "apeclient",
+  "name": "ApeClient",
+  "description": "give me a+ on my cs class pls",
+  "version": "1.0",
+  "mcversion": "1.8.9",
+  "authorList": ["obamabob"]
+}
+]
