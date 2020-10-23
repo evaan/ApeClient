@@ -1,13 +1,17 @@
 package com.obamabob.apeclient.clickgui;
 
 import com.bulenkov.darcula.DarculaLaf;
+import com.obamabob.apeclient.KeyBindHandler;
 import com.obamabob.apeclient.clickgui.windows.*;
+import org.lwjgl.input.Keyboard;
 
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicLookAndFeel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.net.URL;
 
 public class ClickGUI {
@@ -19,6 +23,12 @@ public class ClickGUI {
     public static JCheckBox aura;
     public static JCheckBox antikb;
     public static JCheckBox bhop;
+
+    public static JButton sprintb;
+    public static JButton espb;
+    public static JButton aurab;
+    public static JButton antikbb;
+    public static JButton bhopb;
 
     public ClickGUI() {
 
@@ -40,11 +50,11 @@ public class ClickGUI {
         antikb = new JCheckBox("Anti Knockback");
         bhop = new JCheckBox("Bunny Hop");
 
-        JButton sprintb = new JButton("Sprint: None");
-        JButton espb = new JButton("ESP: None");
-        JButton aurab = new JButton("Kill Aura: None");
-        JButton antikbb = new JButton("Anti Knockback: None");
-        JButton bhopb = new JButton("Bunny Hop: None");
+        sprintb = new JButton("Sprint: None");
+        espb = new JButton("ESP: None");
+        aurab = new JButton("Kill Aura: None");
+        antikbb = new JButton("Anti Knockback: None");
+        bhopb = new JButton("Bunny Hop: None");
 
         JButton sprints = new JButton("Sprint Settings...");
         JButton esps = new JButton("ESP Settings...");
@@ -97,14 +107,15 @@ public class ClickGUI {
         sPanel.add(Box.createVerticalGlue());
         sPanel.add(bhops);
 
-        bindKeys(sprints, esps, auras, antikbs, bhops);
+        settingsButtons(sprints, esps, auras, antikbs, bhops);
+        bindButtons(sprintb, espb, aurab, antikbb, bhopb);
     }
 
     public static void openGUI() {
         if (!clickGui.isVisible()) clickGui.setVisible(true);
     }
 
-    public void bindKeys(JButton sprint, JButton esp, JButton aura, JButton antikb, JButton bhop) {
+    public void settingsButtons(JButton sprint, JButton esp, JButton aura, JButton antikb, JButton bhop) {
         sprint.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -126,7 +137,6 @@ public class ClickGUI {
             }
         });
 
-
         antikb.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -138,6 +148,149 @@ public class ClickGUI {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JOptionPane.showMessageDialog(null, "There are no settings for Bunny Hop.");
+            }
+        });
+    }
+
+    public void bindButtons(JButton sprint, JButton esp, JButton aura, JButton antikb, JButton bhop) {
+        sprint.addActionListener(new ActionListener() {
+            JFrame bindWindow;
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                bindWindow = new JFrame("ApeClient");
+                bindWindow.setLayout(new GridBagLayout());
+                bindWindow.pack();
+                bindWindow.setSize(250, 70);
+                bindWindow.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+                bindWindow.setResizable(false);
+                bindWindow.setLocationRelativeTo(null);
+                bindWindow.add(new JLabel("Press Any Key To Bind: Sprint"), SwingConstants.CENTER);
+                bindWindow.setVisible(true);
+
+                bindWindow.addKeyListener(new KeyListener() {
+                    @Override
+                    public void keyTyped(KeyEvent e) {}
+                    @Override
+                    public void keyReleased(KeyEvent e) {}
+                    @Override
+                    public void keyPressed(KeyEvent e) {
+                        KeyBindHandler.set("Sprint", e.getKeyCode());
+                        bindWindow.setVisible(false);
+                    }
+                });
+            }
+        });
+
+        esp.addActionListener(new ActionListener() {
+            JFrame bindWindow;
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                bindWindow = new JFrame("ApeClient");
+                bindWindow.setLayout(new GridBagLayout());
+                bindWindow.pack();
+                bindWindow.setSize(250, 70);
+                bindWindow.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+                bindWindow.setResizable(false);
+                bindWindow.setLocationRelativeTo(null);
+                bindWindow.add(new JLabel("Press Any Key To Bind: ESP"), SwingConstants.CENTER);
+                bindWindow.setVisible(true);
+
+                bindWindow.addKeyListener(new KeyListener() {
+                    @Override
+                    public void keyTyped(KeyEvent e) {}
+                    @Override
+                    public void keyReleased(KeyEvent e) {}
+                    @Override
+                    public void keyPressed(KeyEvent e) {
+                        KeyBindHandler.set("ESP", e.getKeyCode());
+                        bindWindow.setVisible(false);
+                    }
+                });
+            }
+        });
+
+        aura.addActionListener(new ActionListener() {
+            JFrame bindWindow;
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                bindWindow = new JFrame("ApeClient");
+                bindWindow.setLayout(new GridBagLayout());
+                bindWindow.pack();
+                bindWindow.setSize(250, 70);
+                bindWindow.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+                bindWindow.setResizable(false);
+                bindWindow.setLocationRelativeTo(null);
+                bindWindow.add(new JLabel("Press Any Key To Bind: Kill Aura"), SwingConstants.CENTER);
+                bindWindow.setVisible(true);
+
+                bindWindow.addKeyListener(new KeyListener() {
+                    @Override
+                    public void keyTyped(KeyEvent e) {}
+                    @Override
+                    public void keyReleased(KeyEvent e) {}
+                    @Override
+                    public void keyPressed(KeyEvent e) {
+                        KeyBindHandler.set("Kill Aura", e.getKeyCode());
+                        bindWindow.setVisible(false);
+                    }
+                });
+            }
+        });
+
+
+        antikb.addActionListener(new ActionListener() {
+            JFrame bindWindow;
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                bindWindow = new JFrame("ApeClient");
+                bindWindow.setLayout(new GridBagLayout());
+                bindWindow.pack();
+                bindWindow.setSize(250, 70);
+                bindWindow.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+                bindWindow.setResizable(false);
+                bindWindow.setLocationRelativeTo(null);
+                bindWindow.add(new JLabel("Press Any Key To Bind: Anti Knockback"), SwingConstants.CENTER);
+                bindWindow.setVisible(true);
+
+                bindWindow.addKeyListener(new KeyListener() {
+                    @Override
+                    public void keyTyped(KeyEvent e) {}
+                    @Override
+                    public void keyReleased(KeyEvent e) {}
+                    @Override
+                    public void keyPressed(KeyEvent e) {
+                        KeyBindHandler.set("Anti Knockback", e.getKeyCode());
+                        bindWindow.setVisible(false);
+                    }
+                });
+            }
+        });
+
+        bhop.addActionListener(new ActionListener() {
+            JFrame bindWindow;
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                bindWindow = new JFrame("ApeClient");
+                bindWindow.setLayout(new GridBagLayout());
+                bindWindow.pack();
+                bindWindow.setSize(250, 70);
+                bindWindow.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+                bindWindow.setResizable(false);
+                bindWindow.setLocationRelativeTo(null);
+                bindWindow.add(new JLabel("Press Any Key To Bind: Bunny Hop"), SwingConstants.CENTER);
+                bindWindow.setVisible(true);
+
+                bindWindow.addKeyListener(new KeyListener() {
+                    @Override
+                    public void keyTyped(KeyEvent e) {}
+                    @Override
+                    public void keyReleased(KeyEvent e) {}
+                    @Override
+                    public void keyPressed(KeyEvent e) {
+                        KeyBindHandler.set("Bunny Hop", e.getKeyCode());
+                        bindWindow.setVisible(false);
+                    }
+                });
             }
         });
     }

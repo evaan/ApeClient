@@ -2,6 +2,8 @@ package com.obamabob.apeclient.clickgui.windows;
 
 import javax.swing.*;
 
+//TODO: aura settings
+
 public class AuraSettings {
     public static JFrame auraSettings;
     public static JCheckBox rage;

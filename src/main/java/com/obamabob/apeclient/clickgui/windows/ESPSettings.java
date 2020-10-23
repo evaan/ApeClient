@@ -2,6 +2,8 @@ package com.obamabob.apeclient.clickgui.windows;
 
 import javax.swing.*;
 
+//TODO: esp settings
+
 public class ESPSettings {
     public static JFrame espSettings;
     public static JCheckBox rage;
