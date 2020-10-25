@@ -1,7 +1,7 @@
 package com.obamabob.apeclient.module.modules;
 
 import com.obamabob.apeclient.clickgui.ClickGUI;
-import com.obamabob.apeclient.clickgui.windows.AuraSettings;
+import com.obamabob.apeclient.clickgui.windows.AutoClickerSettings;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -18,14 +18,15 @@ public class AutoClicker {
 
     @SubscribeEvent
     public void onTick(TickEvent.ClientTickEvent event) {
-        AuraSettings.tickDelay.addChangeListener(new ChangeListener() {
+        AutoClickerSettings.tickDelay.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
-                tickDelay = AuraSettings.tickDelay.getValue();
+                tickDelay = AutoClickerSettings.tickDelay.getValue();
             }
         });
         ticks+=1;
         if (tickDelay > ticks) return;
+        //if (ClickGUI.aclick.isSelected()) KeyBinding.onTick(mc.gameSettings.keyBindAttack.getKeyCode());
         if(Minecraft.getMinecraft().gameSettings.keyBindAttack.isKeyDown() && mc.thePlayer != null && ClickGUI.aclick.isSelected()) KeyBinding.onTick(mc.gameSettings.keyBindAttack.getKeyCode());
         ticks = 0;
     }
