@@ -22,7 +22,7 @@ public class KillAura {
     public int tickDelay = 0;
 
     @SubscribeEvent
-    public void onTick(TickEvent.ServerTickEvent event) {
+    public void onTick(TickEvent.ClientTickEvent event) {
         AuraSettings.tickDelay.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
