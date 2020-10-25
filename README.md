@@ -2,3 +2,6 @@
 ApeClient is a 100% free, and open source hacked client for Minecraft 1.8.9
 ## ClickGUI
 The ClickGUI is external, and does not work in menus. The bind is currently HOME (will be customizable eventually)
+## Credits
+ - 086 for mixin stuff
+ - [Darcula](https://github.com/bulenkov/Darcula) for the look and feel theme for the gui
