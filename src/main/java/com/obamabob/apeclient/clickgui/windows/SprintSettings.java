@@ -24,6 +24,9 @@ public class SprintSettings {
     }
 
     public static void open() {
-        sprintSettings.setVisible(true);
+        if (!sprintSettings.isVisible()) sprintSettings.setVisible(true);
+    }
+    public static void close() {
+        if (sprintSettings.isVisible()) sprintSettings.setVisible(false);
     }
 }

@@ -42,6 +42,9 @@ public class AutoClickerSettings {
     }
 
     public static void open() {
-        aclickSettings.setVisible(true);
+        if (!aclickSettings.isVisible()) aclickSettings.setVisible(true);
+    }
+    public static void close() {
+         if (aclickSettings.isVisible()) aclickSettings.setVisible(false);
     }
 }

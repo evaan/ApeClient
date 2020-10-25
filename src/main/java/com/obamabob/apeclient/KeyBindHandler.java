@@ -4,6 +4,7 @@ import com.obamabob.apeclient.clickgui.ClickGUI;
 import org.lwjgl.input.Keyboard;
 
 import javax.swing.*;
+
 import java.awt.event.KeyEvent;
 import java.util.HashMap;
 
@@ -14,8 +15,10 @@ public class KeyBindHandler {
     public static int antikb;
     public static int bhop;
     public static int aclick;
+    public static int crits;
 
     public static void registerKey(int key) {
+        if (Panic.panic) return;
         if(key == Keyboard.KEY_HOME) ClickGUI.openGUI();
         if(key == sprint) toggle(ClickGUI.sprint);
         if(key == esp) toggle(ClickGUI.esp);
@@ -23,6 +26,7 @@ public class KeyBindHandler {
         if(key == antikb) toggle(ClickGUI.antikb);
         if(key == bhop) toggle(ClickGUI.bhop);
         if(key == aclick) toggle(ClickGUI.aclick);
+        if(key == crits) toggle(ClickGUI.crits);
     }
 
     public static void toggle(JCheckBox checkBox) {
@@ -52,11 +56,15 @@ public class KeyBindHandler {
             case "Auto Clicker": KeyBindHandler.aclick = newKey;
                 ClickGUI.aclickb.setText("Auto Clicker: " + Keyboard.getKeyName(newKey));
                 break;
+            case "Criticals": KeyBindHandler.crits = newKey;
+                ClickGUI.critsb.setText("Criticals: " + Keyboard.getKeyName(newKey));
+                break;
         }
     }
 
     public static int convertKeyEvent(int key) {
         HashMap<Integer, Integer> keyCodeMap = new HashMap<>();
+        keyCodeMap.put(KeyEvent.VK_ESCAPE, 0);
         keyCodeMap.put(KeyEvent.VK_0, Keyboard.KEY_0);
         keyCodeMap.put(KeyEvent.VK_1, Keyboard.KEY_1);
         keyCodeMap.put(KeyEvent.VK_2, Keyboard.KEY_2);
@@ -113,9 +121,6 @@ public class KeyBindHandler {
         keyCodeMap.put(KeyEvent.VK_F10, Keyboard.KEY_F10);
         keyCodeMap.put(KeyEvent.VK_F11, Keyboard.KEY_F11);
         keyCodeMap.put(KeyEvent.VK_F12, Keyboard.KEY_F12);
-
         return keyCodeMap.get(key);
     }
-
-
 }

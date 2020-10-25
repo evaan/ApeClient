@@ -50,6 +50,9 @@ public class AuraSettings {
     }
 
     public static void open() {
-        auraSettings.setVisible(true);
+        if (!auraSettings.isVisible()) auraSettings.setVisible(true);
+    }
+    public static void close() {
+        if (auraSettings.isVisible()) auraSettings.setVisible(false);
     }
 }
