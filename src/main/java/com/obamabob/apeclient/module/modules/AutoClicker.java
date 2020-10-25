@@ -26,8 +26,8 @@ public class AutoClicker {
         });
         ticks+=1;
         if (tickDelay > ticks) return;
-        //if (ClickGUI.aclick.isSelected()) KeyBinding.onTick(mc.gameSettings.keyBindAttack.getKeyCode());
-        if(Minecraft.getMinecraft().gameSettings.keyBindAttack.isKeyDown() && mc.thePlayer != null && ClickGUI.aclick.isSelected()) KeyBinding.onTick(mc.gameSettings.keyBindAttack.getKeyCode());
+        if (ClickGUI.aclick.isSelected() && !AutoClickerSettings.requireClick.isSelected()) KeyBinding.onTick(mc.gameSettings.keyBindAttack.getKeyCode());
+        if(Minecraft.getMinecraft().gameSettings.keyBindAttack.isKeyDown() && mc.thePlayer != null && ClickGUI.aclick.isSelected() && AutoClickerSettings.requireClick.isSelected()) KeyBinding.onTick(mc.gameSettings.keyBindAttack.getKeyCode());
         ticks = 0;
     }
 }
