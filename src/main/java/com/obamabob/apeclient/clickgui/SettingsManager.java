@@ -5,7 +5,7 @@ import com.obamabob.apeclient.clickgui.windows.*;
 public class SettingsManager {
     public SettingsManager() {
         SprintSettings sprintSettings = new SprintSettings();
-        ESPSettings espSettings = new ESPSettings();
         AuraSettings auraSettings = new AuraSettings();
+        AutoClickerSettings autoClickerSettings = new AutoClickerSettings();
     }
 }

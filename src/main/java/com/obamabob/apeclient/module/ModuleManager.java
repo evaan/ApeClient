@@ -5,7 +5,7 @@ import net.minecraftforge.common.MinecraftForge;
 
 public class ModuleManager {
     public ModuleManager() {
-        MinecraftForge.EVENT_BUS.register(new AntiKnockBack());
+        MinecraftForge.EVENT_BUS.register(new AutoClicker());
         MinecraftForge.EVENT_BUS.register(new BunnyHop());
         MinecraftForge.EVENT_BUS.register(new ESP());
         MinecraftForge.EVENT_BUS.register(new KillAura());

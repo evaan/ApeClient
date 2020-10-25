@@ -23,12 +23,14 @@ public class ClickGUI {
     public static JCheckBox aura;
     public static JCheckBox antikb;
     public static JCheckBox bhop;
+    public static JCheckBox aclick;
 
     public static JButton sprintb;
     public static JButton espb;
     public static JButton aurab;
     public static JButton antikbb;
     public static JButton bhopb;
+    public static JButton aclickb;
 
     public ClickGUI() {
 
@@ -49,18 +51,21 @@ public class ClickGUI {
         aura = new JCheckBox("Kill Aura");
         antikb = new JCheckBox("Anti Knockback");
         bhop = new JCheckBox("Bunny Hop");
+        aclick = new JCheckBox("Auto Clicker");
 
         sprintb = new JButton("Sprint: None");
         espb = new JButton("ESP: None");
         aurab = new JButton("Kill Aura: None");
         antikbb = new JButton("Anti Knockback: None");
         bhopb = new JButton("Bunny Hop: None");
+        aclickb = new JButton("Auto Clicker: None");
 
         JButton sprints = new JButton("Sprint Settings...");
         JButton esps = new JButton("ESP Settings...");
         JButton auras = new JButton("Kill Aura Settings...");
         JButton antikbs = new JButton("Anti Knockback Settings...");
         JButton bhops = new JButton("Bunny Hop Settings...");
+        JButton aclicks = new JButton("Auto Click Settings...");
 
         JPanel mPanel = new JPanel();
         mPanel.setLayout(new BoxLayout(mPanel, BoxLayout.Y_AXIS));
@@ -86,6 +91,8 @@ public class ClickGUI {
         mPanel.add(antikb);
         mPanel.add(Box.createVerticalGlue());
         mPanel.add(bhop);
+        mPanel.add(Box.createVerticalGlue());
+        mPanel.add(aclick);
 
         bPanel.add(sprintb);
         bPanel.add(Box.createVerticalGlue());
@@ -96,6 +103,8 @@ public class ClickGUI {
         bPanel.add(antikbb);
         bPanel.add(Box.createVerticalGlue());
         bPanel.add(bhopb);
+        bPanel.add(Box.createVerticalGlue());
+        bPanel.add(aclickb);
 
         sPanel.add(sprints);
         sPanel.add(Box.createVerticalGlue());
@@ -106,16 +115,18 @@ public class ClickGUI {
         sPanel.add(antikbs);
         sPanel.add(Box.createVerticalGlue());
         sPanel.add(bhops);
+        sPanel.add(Box.createVerticalGlue());
+        sPanel.add(aclicks);
 
-        settingsButtons(sprints, esps, auras, antikbs, bhops);
-        bindButtons(sprintb, espb, aurab, antikbb, bhopb);
+        settingsButtons(sprints, esps, auras, antikbs, bhops, aclicks);
+        bindButtons(sprintb, espb, aurab, antikbb, bhopb, aclickb);
     }
 
     public static void openGUI() {
         if (!clickGui.isVisible()) clickGui.setVisible(true);
     }
 
-    public void settingsButtons(JButton sprint, JButton esp, JButton aura, JButton antikb, JButton bhop) {
+    public void settingsButtons(JButton sprint, JButton esp, JButton aura, JButton antikb, JButton bhop, JButton aclick) {
         sprint.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -126,7 +137,7 @@ public class ClickGUI {
         esp.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ESPSettings.open();
+                JOptionPane.showMessageDialog(null, "There are no settings for ESP.");
             }
         });
 
@@ -150,9 +161,16 @@ public class ClickGUI {
                 JOptionPane.showMessageDialog(null, "There are no settings for Bunny Hop.");
             }
         });
+
+        aclick.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                AutoClickerSettings.open();
+            }
+        });
     }
 
-    public void bindButtons(JButton sprint, JButton esp, JButton aura, JButton antikb, JButton bhop) {
+    public void bindButtons(JButton sprint, JButton esp, JButton aura, JButton antikb, JButton bhop, JButton aclick) {
         sprint.addActionListener(new ActionListener() {
             JFrame bindWindow;
             @Override
@@ -288,6 +306,34 @@ public class ClickGUI {
                     @Override
                     public void keyPressed(KeyEvent e) {
                         KeyBindHandler.set("Bunny Hop", e.getKeyCode());
+                        bindWindow.setVisible(false);
+                    }
+                });
+            }
+        });
+
+        aclick.addActionListener(new ActionListener() {
+            JFrame bindWindow;
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                bindWindow = new JFrame("ApeClient");
+                bindWindow.setLayout(new GridBagLayout());
+                bindWindow.pack();
+                bindWindow.setSize(250, 70);
+                bindWindow.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+                bindWindow.setResizable(false);
+                bindWindow.setLocationRelativeTo(null);
+                bindWindow.add(new JLabel("Press Any Key To Bind: Auto Clicker"), SwingConstants.CENTER);
+                bindWindow.setVisible(true);
+
+                bindWindow.addKeyListener(new KeyListener() {
+                    @Override
+                    public void keyTyped(KeyEvent e) {}
+                    @Override
+                    public void keyReleased(KeyEvent e) {}
+                    @Override
+                    public void keyPressed(KeyEvent e) {
+                        KeyBindHandler.set("Auto Clicker", e.getKeyCode());
                         bindWindow.setVisible(false);
                     }
                 });

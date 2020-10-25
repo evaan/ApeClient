@@ -13,6 +13,7 @@ public class KeyBindHandler {
     public static int killaura;
     public static int antikb;
     public static int bhop;
+    public static int aclick;
 
     public static void registerKey(int key) {
         if(key == Keyboard.KEY_HOME) ClickGUI.openGUI();
@@ -21,6 +22,7 @@ public class KeyBindHandler {
         if(key == killaura) toggle(ClickGUI.aura);
         if(key == antikb) toggle(ClickGUI.antikb);
         if(key == bhop) toggle(ClickGUI.bhop);
+        if(key == aclick) toggle(ClickGUI.aclick);
     }
 
     public static void toggle(JCheckBox checkBox) {
@@ -46,6 +48,9 @@ public class KeyBindHandler {
                 break;
             case "Bunny Hop": KeyBindHandler.bhop = newKey;
                 ClickGUI.bhopb.setText("Bunny Hop: " + Keyboard.getKeyName(newKey));
+                break;
+            case "Auto Clicker": KeyBindHandler.aclick = newKey;
+                ClickGUI.aclickb.setText("Auto Clicker: " + Keyboard.getKeyName(newKey));
                 break;
         }
     }
