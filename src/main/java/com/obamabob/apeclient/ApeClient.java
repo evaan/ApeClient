@@ -3,6 +3,8 @@ package com.obamabob.apeclient;
 import com.obamabob.apeclient.clickgui.ClickGUI;
 import com.obamabob.apeclient.clickgui.SettingsManager;
 import com.obamabob.apeclient.module.ModuleManager;
+import com.obamabob.apeclient.util.LoadConfig;
+import com.obamabob.apeclient.util.SaveConfig;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -19,11 +21,17 @@ public class ApeClient
     public ClickGUI clickGUI;
     public ModuleManager moduleManager;
     public SettingsManager settingsManager;
+    public KeyBindHandler keyBindHandler;
 
     @EventHandler
     public void postInit(FMLPostInitializationEvent event) {
         clickGUI = new ClickGUI();
         moduleManager = new ModuleManager();
         settingsManager = new SettingsManager();
+        keyBindHandler = new KeyBindHandler();
+        Runtime.getRuntime().addShutdownHook(new SaveConfig());
+        LoadConfig.loadModules();
+        LoadConfig.loadBinds();
+        LoadConfig.loadSettings();
     }
 }

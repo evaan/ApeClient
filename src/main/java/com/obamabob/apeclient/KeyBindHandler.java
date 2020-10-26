@@ -1,6 +1,7 @@
 package com.obamabob.apeclient;
 
 import com.obamabob.apeclient.clickgui.ClickGUI;
+import com.obamabob.apeclient.util.Panic;
 import org.lwjgl.input.Keyboard;
 
 import javax.swing.*;
@@ -16,6 +17,16 @@ public class KeyBindHandler {
     public static int bhop;
     public static int aclick;
     public static int crits;
+
+    public KeyBindHandler() {
+        sprint = 0;
+        esp = 0;
+        killaura = 0;
+        antikb = 0;
+        bhop = 0;
+        aclick = 0;
+        crits = 0;
+    }
 
     public static void registerKey(int key) {
         if (Panic.panic) return;
@@ -34,8 +45,10 @@ public class KeyBindHandler {
         else checkBox.setSelected(true);
     }
 
-    public static void set(String name, int key) {
-        int newKey = convertKeyEvent(key);
+    public static void set(String name, int key, boolean convert) {
+        int newKey;
+        if (convert) newKey = convertKeyEvent(key);
+        else newKey = key;
 
         switch (name) {
             case "Sprint": KeyBindHandler.sprint = newKey;

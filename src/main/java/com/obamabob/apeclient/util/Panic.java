@@ -1,4 +1,4 @@
-package com.obamabob.apeclient;
+package com.obamabob.apeclient.util;
 
 import com.obamabob.apeclient.clickgui.ClickGUI;
 import com.obamabob.apeclient.clickgui.windows.AuraSettings;

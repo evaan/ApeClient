@@ -2,9 +2,8 @@ package com.obamabob.apeclient.clickgui;
 
 import com.bulenkov.darcula.DarculaLaf;
 import com.obamabob.apeclient.KeyBindHandler;
-import com.obamabob.apeclient.Panic;
+import com.obamabob.apeclient.util.Panic;
 import com.obamabob.apeclient.clickgui.windows.*;
-import org.lwjgl.input.Keyboard;
 
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicLookAndFeel;
@@ -13,7 +12,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.net.URL;
 
 public class ClickGUI {
 
@@ -186,7 +184,7 @@ public class ClickGUI {
             public void keyReleased(KeyEvent e) {}
             @Override
             public void keyPressed(KeyEvent e) {
-                KeyBindHandler.set(module, e.getKeyCode());
+                KeyBindHandler.set(module, e.getKeyCode(), true);
                 bindWindow.setVisible(false);
             }
         });

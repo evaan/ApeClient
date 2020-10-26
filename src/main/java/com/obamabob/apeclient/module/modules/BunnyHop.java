@@ -7,7 +7,7 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 public class BunnyHop {
     public boolean isToJump() {
-        if (!Minecraft.getMinecraft().thePlayer.isInWater() && !Minecraft.getMinecraft().thePlayer.isOnLadder()) return true;
+        if (Minecraft.getMinecraft().thePlayer != null && !Minecraft.getMinecraft().thePlayer.isInWater() && !Minecraft.getMinecraft().thePlayer.isOnLadder()) return true;
         return false;
     }
 
@@ -16,6 +16,6 @@ public class BunnyHop {
     @SubscribeEvent
     public void onTick(TickEvent.ClientTickEvent event) {
         if (!ClickGUI.bhop.isSelected()) return;
-        if (isToJump() && Minecraft.getMinecraft().thePlayer != null && Minecraft.getMinecraft().thePlayer.moveForward != 0 && (Minecraft.getMinecraft().thePlayer.posY % 1 == 0)) Minecraft.getMinecraft().thePlayer.jump();
+        if (isToJump() && Minecraft.getMinecraft().thePlayer.moveForward != 0 && (Minecraft.getMinecraft().thePlayer.posY % 1 == 0)) Minecraft.getMinecraft().thePlayer.jump();
     }
 }
