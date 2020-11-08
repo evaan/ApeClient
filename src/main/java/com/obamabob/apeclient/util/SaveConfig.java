@@ -48,6 +48,7 @@ public class SaveConfig extends Thread {
     public static void saveBinds() {
         ArrayList<Integer> binds = new ArrayList<>();
 
+        binds.add(KeyBindHandler.clickgui);
         binds.add(KeyBindHandler.sprint);
         binds.add(KeyBindHandler.esp);
         binds.add(KeyBindHandler.killaura);

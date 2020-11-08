@@ -17,6 +17,7 @@ public class KeyBindHandler {
     public static int bhop;
     public static int aclick;
     public static int crits;
+    public static int clickgui;
 
     public KeyBindHandler() {
         sprint = 0;
@@ -26,11 +27,12 @@ public class KeyBindHandler {
         bhop = 0;
         aclick = 0;
         crits = 0;
+        clickgui = 0;
     }
 
     public static void registerKey(int key) {
-        if (Panic.panic) return;
-        if(key == Keyboard.KEY_HOME) ClickGUI.openGUI();
+        if (Panic.panic) return; //TODO: fix ruhama type shit where everything turns on
+        if(key == clickgui) ClickGUI.openGUI();
         if(key == sprint) toggle(ClickGUI.sprint);
         if(key == esp) toggle(ClickGUI.esp);
         if(key == killaura) toggle(ClickGUI.aura);
@@ -71,6 +73,9 @@ public class KeyBindHandler {
                 break;
             case "Criticals": KeyBindHandler.crits = newKey;
                 ClickGUI.critsb.setText("Criticals: " + Keyboard.getKeyName(newKey));
+                break;
+            case "ClickGUI": KeyBindHandler.clickgui = newKey;
+                ClickGUI.clickguiBind.setText("ClickGUI: " + Keyboard.getKeyName(newKey));
                 break;
         }
     }
@@ -134,6 +139,8 @@ public class KeyBindHandler {
         keyCodeMap.put(KeyEvent.VK_F10, Keyboard.KEY_F10);
         keyCodeMap.put(KeyEvent.VK_F11, Keyboard.KEY_F11);
         keyCodeMap.put(KeyEvent.VK_F12, Keyboard.KEY_F12);
+        keyCodeMap.put(KeyEvent.VK_HOME, Keyboard.KEY_HOME);
+        keyCodeMap.put(KeyEvent.VK_INSERT, Keyboard.KEY_INSERT);
         return keyCodeMap.get(key);
     }
 }

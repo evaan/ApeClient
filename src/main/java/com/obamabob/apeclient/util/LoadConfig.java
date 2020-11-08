@@ -38,14 +38,16 @@ public class LoadConfig {
 
     public static void loadBinds() {
         try {
-            int sprint = Integer.parseInt(Files.readAllLines(Paths.get(binds.getAbsolutePath())).get(0));
-            int esp = Integer.parseInt(Files.readAllLines(Paths.get(binds.getAbsolutePath())).get(1));
-            int killAura = Integer.parseInt(Files.readAllLines(Paths.get(binds.getAbsolutePath())).get(2));
-            int antiKnockback = Integer.parseInt(Files.readAllLines(Paths.get(binds.getAbsolutePath())).get(3));
-            int bunnyHop = Integer.parseInt(Files.readAllLines(Paths.get(binds.getAbsolutePath())).get(4));
-            int autoClicker = Integer.parseInt(Files.readAllLines(Paths.get(binds.getAbsolutePath())).get(5));
-            int criticals = Integer.parseInt(Files.readAllLines(Paths.get(binds.getAbsolutePath())).get(6));
+            int clickgui = Integer.parseInt(Files.readAllLines(Paths.get(binds.getAbsolutePath())).get(0));
+            int sprint = Integer.parseInt(Files.readAllLines(Paths.get(binds.getAbsolutePath())).get(1));
+            int esp = Integer.parseInt(Files.readAllLines(Paths.get(binds.getAbsolutePath())).get(2));
+            int killAura = Integer.parseInt(Files.readAllLines(Paths.get(binds.getAbsolutePath())).get(3));
+            int antiKnockback = Integer.parseInt(Files.readAllLines(Paths.get(binds.getAbsolutePath())).get(4));
+            int bunnyHop = Integer.parseInt(Files.readAllLines(Paths.get(binds.getAbsolutePath())).get(5));
+            int autoClicker = Integer.parseInt(Files.readAllLines(Paths.get(binds.getAbsolutePath())).get(6));
+            int criticals = Integer.parseInt(Files.readAllLines(Paths.get(binds.getAbsolutePath())).get(7));
 
+            KeyBindHandler.set("ClickGUI", clickgui, false);
             KeyBindHandler.set("Sprint", sprint, false);
             KeyBindHandler.set("ESP", esp, false);
             KeyBindHandler.set("Kill Aura", killAura, false);

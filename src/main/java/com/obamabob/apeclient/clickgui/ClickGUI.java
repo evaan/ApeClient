@@ -12,6 +12,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 public class ClickGUI {
 
@@ -33,11 +36,15 @@ public class ClickGUI {
     public static JButton aclickb;
     public static JButton critsb;
 
+    public static JButton clickguiBind;
+
     public ClickGUI() {
 
         try {
-            BasicLookAndFeel darcula = new DarculaLaf();
-            UIManager.setLookAndFeel(darcula);
+            if (System.getProperty("os.name").contains("Windows")) { //fixes a crash on my linux machine
+                BasicLookAndFeel darcula = new DarculaLaf();
+                UIManager.setLookAndFeel(darcula);
+            }
         } catch (Exception e) {}
         clickGui = new JFrame("ApeClient");
         clickGui.setLayout(new BoxLayout(clickGui.getContentPane(), BoxLayout.Y_AXIS));
@@ -51,12 +58,26 @@ public class ClickGUI {
         topPanel.setLayout(new BoxLayout(topPanel, BoxLayout.X_AXIS));
 
         JPanel btmPanel = new JPanel();
-        btmPanel.setLayout(null);
+        btmPanel.setLayout(new BoxLayout(btmPanel, BoxLayout.X_AXIS));
         JButton panicButton = new JButton("Panic!");
-        panicButton.setSize(460, 35);
         btmPanel.add(panicButton);
+        btmPanel.add(Box.createHorizontalGlue());
+        clickguiBind = new JButton("ClickGUI: NONE");
+        btmPanel.add(clickguiBind);
+        btmPanel.add(Box.createHorizontalGlue());
+        JButton openRepo = new JButton("Star the GitHub!");
+        btmPanel.add(openRepo);
 
         panicButton.addActionListener(new ActionListener() {@Override public void actionPerformed(ActionEvent e) { Panic.panic(); }});
+        openRepo.addActionListener(new ActionListener() {@Override public void actionPerformed(ActionEvent e) {
+            try {
+                Desktop.getDesktop().browse(new URI("https://github.com/obamabob/apeclient"));
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            } catch (URISyntaxException uriSyntaxException) {
+                uriSyntaxException.printStackTrace();
+            }
+        }});
 
         sprint = new JCheckBox("Sprint");
         esp = new JCheckBox("ESP");
@@ -89,6 +110,7 @@ public class ClickGUI {
         bhopb.addActionListener(new ActionListener() {@Override public void actionPerformed(ActionEvent e) { bindModule("Bunny Hop"); }});
         aclickb.addActionListener(new ActionListener() {@Override public void actionPerformed(ActionEvent e) { bindModule("Auto Clicker"); }});
         critsb.addActionListener(new ActionListener() {@Override public void actionPerformed(ActionEvent e) { bindModule("Criticals"); }});
+        clickguiBind.addActionListener(new ActionListener() {@Override public void actionPerformed(ActionEvent e) { bindModule("ClickGUI"); }});
 
         sprints.addActionListener(new ActionListener() {@Override public void actionPerformed(ActionEvent e) { SprintSettings.open(); }});
         esps.addActionListener(new ActionListener() {@Override public void actionPerformed(ActionEvent e) { JOptionPane.showMessageDialog(null, "There are no settings for ESP."); }});
@@ -126,6 +148,7 @@ public class ClickGUI {
         mPanel.add(aclick);
         mPanel.add(Box.createVerticalGlue());
         mPanel.add(crits);
+        mPanel.add(Box.createVerticalGlue());
 
         bPanel.add(sprintb);
         bPanel.add(Box.createVerticalGlue());
@@ -140,6 +163,7 @@ public class ClickGUI {
         bPanel.add(aclickb);
         bPanel.add(Box.createVerticalGlue());
         bPanel.add(critsb);
+        bPanel.add(Box.createVerticalGlue());
 
         sPanel.add(sprints);
         sPanel.add(Box.createVerticalGlue());
@@ -154,6 +178,7 @@ public class ClickGUI {
         sPanel.add(aclicks);
         sPanel.add(Box.createVerticalGlue());
         sPanel.add(critss);
+        sPanel.add(Box.createVerticalGlue());
 
         clickGui.add(topPanel);
         clickGui.add(btmPanel);
